@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -58,9 +58,8 @@ const Companies = [
   },
 ]
 
-const CompaniesCombobox = () => {
-  const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState("")
+const CompaniesCombobox = ({companieFilter, setCompanieFilter}) => {
+  const [open, setOpen] = useState(false)
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -70,8 +69,8 @@ const CompaniesCombobox = () => {
           aria-expanded={open}
           className="w-[200px] justify-between"
         >
-          {value
-            ? Companies.find((Company) => Company.value === value)?.label
+          {companieFilter
+            ? Companies.find((Company) => Company.value === companieFilter)?.label
             : "Company"}
           <Image src={CarretDown} width={20} height={20} alt="icon carretDown" />
         </Button>
@@ -87,7 +86,7 @@ const CompaniesCombobox = () => {
                   key={Company.value}
                   value={Company.value}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue)
+                    setCompanieFilter(currentValue === companieFilter ? "" : currentValue)
                     setOpen(false)
                   }}
                 >
@@ -95,7 +94,7 @@ const CompaniesCombobox = () => {
                   <Image src={Check} width={20} height={20} alt="icon check"
                     className={cn(
                       "ml-auto h-4 w-4",
-                      value === Company.value ? "opacity-100" : "opacity-0"
+                      companieFilter === Company.value ? "opacity-100" : "opacity-0"
                     )}
                   />
                 </CommandItem>

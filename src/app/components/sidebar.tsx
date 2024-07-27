@@ -11,12 +11,24 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Bell, Home, LineChart, Package, Package2, ShoppingCart, Users } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 import Image from 'next/image';
 import userProfil from "../../../public/user-profil.jpg"
 import arrowDown from "../../../public/icons/arrow-down.svg"
+import HomeIcon from "../../../public/icons/home.svg"
+import ClientsIcon from "../../../public/icons/client.svg"
+import LeadsIcon from "../../../public/icons/leads.svg"
+import DealsIcon from "../../../public/icons/deals.svg"
+import InboundIcon from "../../../public/icons/inbound.svg"
+import OutboundIcon from "../../../public/icons/outbound.svg"
+import AdsIcon from "../../../public/icons/ads.svg"
+import NotificationsIcon from "../../../public/icons/notifications.svg"
+import SettingsIcon from "../../../public/icons/settings.svg"
+import UpgradeIcon from "../../../public/icons/upgrade.svg"
+import SearchIcon from "../../../public/icons/search.svg"
+import KblocIcon from "../../../public/icons/kbloc.svg"
+import Logo from "../../../public/logo.svg"
 
 const Sidebar = () => {
   return (
@@ -24,83 +36,84 @@ const Sidebar = () => {
       <div className='w-full'>
         <div className="hidden md:block">
           <div className="flex h-full max-h-screen flex-col gap-2">
-            <div className="flex h-14 items-center px-4 lg:h-[60px] lg:px-6">
-              <Link href="/" className="flex items-center gap-2 font-semibold">
-                <Package2 className="h-6 w-6" />
-                <span className="">Acme Inc</span>
-              </Link>
+            <div className="flex h-14 items-center lg:h-[60px]">
+              <Image src={Logo} width={80} height={80} alt="Logo Society" />
+              
             </div>
             <div className="flex-1">
-              <div className='flex items-start px-5 pb-2'>
-                <Input type="text" placeholder="Search" />
+            <div className='flex items-center px-5 pb-2 w-full relative'>
+                <Image className="absolute ml-2" src={SearchIcon} width={20} height={20} alt="icon search" />
+                <Input className="px-10 py-4" type="text" placeholder="Search" />
+                <Image className="absolute right-6" src={KblocIcon} width={50} height={50} alt="icon keyboard" />
+
               </div>
-              <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
-                <h2 className='text-sidebar-title px-2 mt-6 mb-2 text-md'>Navigation</h2>
+              <nav className="grid items-start px-2 text-md font-medium lg:px-4">
+                <h2 className='text-sidebar-title px-2 mt-2 mb-2 text-md'>Navigation</h2>
                 <Link
                   href="#"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-1 text-primary transition-all hover:bg-muted"
                 >
-                  <Home className="h-4 w-4" />
+                  <Image src={HomeIcon} width={20} height={20} alt="icon home" />
                   Home
                 </Link>
                 <Link
                   href="#"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-1 text-primary transition-all hover:bg-muted"
                 >
-                  <ShoppingCart className="h-4 w-4" />
-                  Client
-                  <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
+                  <Image src={ClientsIcon} width={20} height={20} alt="icon clients" />
+                  Clients
+                </Link>
+                <Link
+                  href="#"
+                  className="flex items-center gap-3 rounded-lg bg-white px-3 py-1 transition-all hover:bg-muted"
+                >
+                  <Image src={LeadsIcon} width={20} height={20} alt="icon home" />
+                  Leads
+                </Link>
+                <Link
+                  href="#"
+                  className="flex items-center gap-3 rounded-lg px-3 py-1 text-primary transition-all hover:bg-muted"
+                >
+                  <Image src={DealsIcon} width={20} height={20} alt="icon Deals" />
+                  Deals
+                </Link>
+                <h2 className='text-sidebar-title px-2 mt-2 mb-2 text-md'>Your lists</h2>
+                <Link
+                  href="#"
+                  className="flex items-center gap-3 rounded-lg px-3 py-1 text-primary transition-all hover:bg-muted"
+                >
+                  <Image src={InboundIcon} width={20} height={20} alt="icon inbound" />
+                  Inbound
+                </Link>
+                <Link
+                  href="#"
+                  className="flex items-center gap-3 rounded-lg px-3 py-1 text-primary transition-all hover:bg-muted"
+                >
+                  <Image src={OutboundIcon} width={20} height={20} alt="icon outbound" />
+                  Outbound
+                </Link>
+                <Link
+                  href="#"
+                  className="flex items-center gap-3 rounded-lg px-3 py-1 text-primary transition-all hover:bg-muted"
+                >
+                  <Image src={AdsIcon} width={20} height={20} alt="icon ads" />
+                  Ads
+                </Link>
+                <Link
+                  href="#"
+                  className="flex items-center gap-3 rounded-lg px-3 py-1  mt-5 text-primary transition-all hover:bg-muted"
+                >
+                  <Image src={NotificationsIcon} width={20} height={20} alt="icon notifications" />
+                  Notifications
+                  <Badge className="flex h-5 w-10 shrink-0 items-center justify-center rounded-md text-xs self-end">
                     6
                   </Badge>
                 </Link>
                 <Link
                   href="#"
-                  className="flex items-center gap-3 rounded-lg bg-white px-3 py-2 text-primary transition-all hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-1 text-primary transition-all hover:bg-muted"
                 >
-                  <Package className="h-4 w-4" />
-                  Leads
-                </Link>
-                <Link
-                  href="#"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-                >
-                  <Users className="h-4 w-4" />
-                  Deals
-                </Link>
-                <h2 className='text-sidebar-title px-2 mt-6 mb-2 text-md'>Your lists</h2>
-                <Link
-                  href="#"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-                >
-                  <LineChart className="h-4 w-4" />
-                  Inbound
-                </Link>
-                <Link
-                  href="#"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-                >
-                  <LineChart className="h-4 w-4" />
-                  Outbound
-                </Link>
-                <Link
-                  href="#"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-                >
-                  <LineChart className="h-4 w-4" />
-                  Ads
-                </Link>
-                <Link
-                  href="#"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2  mt-5 text-muted-foreground transition-all hover:text-primary"
-                >
-                  <LineChart className="h-4 w-4" />
-                  Notifications
-                </Link>
-                <Link
-                  href="#"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-                >
-                  <LineChart className="h-4 w-4" />
+                  <Image src={SettingsIcon} width={20} height={20} alt="icon settings" />
                   Settings
                 </Link>
               </nav>
@@ -109,15 +122,19 @@ const Sidebar = () => {
               <Card x-chunk="dashboard-02-chunk-0">
 
                 <CardContent className="p-2  md:p-4">
-                  Deals
+                  <div className='flex flex-row items-center'>
+                    <Image src={DealsIcon} width={18} height={18} alt="icon Deals" />
+                    Deals
+                  </div>
                   <Progress value={80} />
                   <p className='py-2'>5 Deals left from 30 Leads</p>
                   <Button size="sm" className="w-full">
+                    <Image src={UpgradeIcon} width={20} height={20} alt="icon home" />
                     Upgrade to pro
                   </Button>
                 </CardContent>
               </Card>
-              <Card x-chunk="dashboard-02-chunk-0 mt-2">
+              <Card x-chunk="dashboard-02-chunk-0 " className='mt-2'>
                 <CardContent className="p-2 md:p-4 w-full ">
                   <DropdownMenu>
                     <DropdownMenuTrigger className='w-full flex flex-row items-center'>

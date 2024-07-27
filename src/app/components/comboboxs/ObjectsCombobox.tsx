@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -58,9 +58,8 @@ const Objects = [
   },
 ]
 
-const ObjectsCombobox = () => {
-  const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState("")
+const ObjectsCombobox = ({objectFilter, setObjectFilter}) => {
+  const [open, setOpen] = useState(false)
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -70,8 +69,8 @@ const ObjectsCombobox = () => {
           aria-expanded={open}
           className="w-[200px] justify-between"
         >
-          {value
-            ? Objects.find((Object) => Object.value === value)?.label
+          {objectFilter
+            ? Objects.find((Object) => Object.value === objectFilter)?.label
             : "Object"}
           <Image src={CarretDown} width={20} height={20} alt="icon carretDown" />
         </Button>
@@ -87,7 +86,7 @@ const ObjectsCombobox = () => {
                   key={Object.value}
                   value={Object.value}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue)
+                    setObjectFilter(currentValue === objectFilter ? "" : currentValue)
                     setOpen(false)
                   }}
                 >
@@ -95,7 +94,7 @@ const ObjectsCombobox = () => {
                   <Image src={Check} width={20} height={20} alt="icon check"
                     className={cn(
                       "ml-auto h-4 w-4",
-                      value === Object.value ? "opacity-100" : "opacity-0"
+                      objectFilter === Object.value ? "opacity-100" : "opacity-0"
                     )}
                   />
                 </CommandItem>

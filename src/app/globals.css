@@ -67,3 +67,36 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+/* Cibler la scrollbar du conteneur de la table */
+*::-webkit-scrollbar {
+  width: 12px;
+  /* Largeur de la scrollbar */
+  height: 12px;
+  /* Hauteur de la scrollbar */
+}
+
+/* Track de la scrollbar */
+*::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  /* Couleur du track */
+  border-radius: 10px;
+  /* Coins arrondis */
+}
+
+/* Thumb de la scrollbar */
+*::-webkit-scrollbar-thumb {
+  background: #888;
+  /* Couleur du thumb */
+  border-radius: 10px;
+  /* Coins arrondis */
+  border: 2px solid #f1f1f1;
+  /* Espace autour du thumb */
+}
+
+/* Thumb hover de la scrollbar */
+*::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  /* Couleur du thumb au survol */
+}

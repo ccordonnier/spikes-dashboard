@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className + " bg-root h-[99vh] flex flex-row pt-10 pb-10 overflow-hidden"}><Sidebar />{children}</body>
+      <body className={inter.className + " bg-root flex flex-row h-[98vh] p-y-2 overflow-hidden pt-5"}><Sidebar />{children}</body>
     </html>
   );
 }

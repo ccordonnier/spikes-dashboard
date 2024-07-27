@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -42,9 +42,8 @@ const Statuses = [
   }
 ]
 
-const StatusesCombobox = () => {
-  const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState("")
+const StatusesCombobox = ({statusFilter, setStatusFilter}) => {
+  const [open, setOpen] = useState(false)
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -54,8 +53,8 @@ const StatusesCombobox = () => {
           aria-expanded={open}
           className="w-[200px] justify-between"
         >
-          {value
-            ? Statuses.find((Status) => Status.value === value)?.label
+          {statusFilter
+            ? Statuses.find((Status) => Status.value === statusFilter)?.label
             : "Status"}
           <Image src={CarretDown} width={20} height={20} alt="icon carretDown" />
         </Button>
@@ -71,7 +70,7 @@ const StatusesCombobox = () => {
                   key={Status.value}
                   value={Status.value}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue)
+                    setStatusFilter(currentValue === statusFilter ? "" : currentValue)
                     setOpen(false)
                   }}
                 >
@@ -79,7 +78,7 @@ const StatusesCombobox = () => {
                   <Image src={Check} width={20} height={20} alt="icon check"
                     className={cn(
                       "ml-auto h-4 w-4",
-                      value === Status.value ? "opacity-100" : "opacity-0"
+                      statusFilter === Status.value ? "opacity-100" : "opacity-0"
                     )}
                   />
                 </CommandItem>
