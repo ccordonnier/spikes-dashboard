@@ -26,6 +26,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { log } from "console"
 
 const data: Payment[] = [
   {
@@ -34,56 +35,56 @@ const data: Payment[] = [
     company: "stripe",
     status: "Pending",
     amount: 7800,
-  },{
+  }, {
     add: "2Jan.24",
     object: "App Redesign : Onboarding",
     company: "github",
     status: "Canceled",
     amount: 12800,
-  },{
+  }, {
     add: "3Dec.23",
     object: "Pitch Deck B2B",
     company: "amazon",
     status: "Ongoing",
     amount: 14000,
-  },{
+  }, {
     add: "4Oct.23",
     object: "Mobile App, UX Audit",
     company: "steam",
     status: "Wainting for confirmation",
     amount: 2000,
-  },{
+  }, {
     add: "5Oct.23",
     object: "Splash Screen Illustrator",
     company: "adobe",
     status: "Completed",
     amount: 5500,
-  },{
+  }, {
     add: "6Oct.23",
     object: "Features Add",
     company: "thebrowsercompany",
     status: "Pending",
     amount: 14500,
-  },{
+  }, {
     add: "7Sept.23",
     object: "Brand Guidelines",
     company: "figma",
     status: "Completed",
     amount: 21500,
-  },{
+  }, {
     add: "8Sept.23",
     object: "New messages UX",
     company: "slack",
     status: "Ongoing",
     amount: 1900,
-  },{
+  }, {
     add: "9Sept23",
     object: "Landing page",
     company: "opensea",
     status: "Pending",
     amount: 2300,
   }
-  ,{
+  , {
     add: "9Sept23",
     object: "Landing page",
     company: "opensea",
@@ -117,15 +118,15 @@ const statusColors: statusColors = {
 }
 
 const Companies: Companies = {
-  "stripe": {name:"Stripe Inc.", logo: "stripe.svg"},
-  "github": {name:"Github Corp.", logo: "github.svg"},
-  "amazon": {name:"Amazon", logo: "amazon.svg"},
-  "steam": {name:"Steam", logo: "steam.svg"},
-  "adobe": {name:"Adobe LLC.", logo: "adobe.svg"},
-  "thebrowsercompany": {name:"The Browser Company", logo: "thebrowsercompany.svg"},
-  "figma": {name:"Figma", logo: "figma.svg"},
-  "slack": {name:"Slack Inc.", logo: "slack.svg"},
-  "opensea": {name:"Opensea", logo: "opensea.svg"},
+  "stripe": { name: "Stripe Inc.", logo: "stripe.svg" },
+  "github": { name: "Github Corp.", logo: "github.svg" },
+  "amazon": { name: "Amazon", logo: "amazon.svg" },
+  "steam": { name: "Steam", logo: "steam.svg" },
+  "adobe": { name: "Adobe LLC.", logo: "adobe.svg" },
+  "thebrowsercompany": { name: "The Browser Company", logo: "thebrowsercompany.svg" },
+  "figma": { name: "Figma", logo: "figma.svg" },
+  "slack": { name: "Slack Inc.", logo: "slack.svg" },
+  "opensea": { name: "Opensea", logo: "opensea.svg" },
 }
 
 export type Companies = {
@@ -181,7 +182,7 @@ export const columns: ColumnDef<Payment>[] = [
     header: ({ column }) => {
       return (
         <Button
-        className="pl-0"
+          className="pl-0"
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
@@ -190,7 +191,10 @@ export const columns: ColumnDef<Payment>[] = [
         </Button>
       )
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("add").substring(1)}</div>,
+    cell: ({ row }) => {
+      const value = row.getValue("add") as string;
+      return <div className="lowercase">{value.substring(1)}</div>;
+    }
   },
   {
     accessorKey: "object",
@@ -202,16 +206,21 @@ export const columns: ColumnDef<Payment>[] = [
   {
     accessorKey: "company",
     header: "Company",
-    cell: ({ row }) => (
-      <div className="capitalize flex flex-row items-center"><Image className="mr-2" src={`/logos/${Companies[row.getValue("company")].logo}`} width={30} height={30} alt={Companies[row.getValue("company")].name} /> {Companies[row.getValue("company")].name}</div>
-    ),
+    cell: ({ row }) => {
+      const companyKey = row.getValue("company") as keyof Companies;
+      const companyData = Companies[companyKey];
+
+      return <div className="capitalize flex flex-row items-center"><Image className="mr-2" src={`/logos/${companyData.logo}`} width={30} height={30} alt={companyData.name} /> {companyData.name}</div>
+    },
   },
   {
     accessorKey: "status",
     header: "Status",
-    cell: ({ row }) => (
-      <div className="capitalize flex items-center"><span className="rounded-full block w-[6px] h-[6px] mr-3" style={{backgroundColor: statusColors[row.getValue("status")]}}></span> {row.getValue("status")}</div>
-    ),
+    cell: ({ row }) => {
+      const status = row.getValue("status") as Payment['status'];
+      const color = statusColors[status];
+      return <div className="capitalize flex items-center"><span className="rounded-full block w-[6px] h-[6px] mr-3" style={{ backgroundColor: color }}></span> {status}</div>
+    },
   },
   {
     accessorKey: "amount",
@@ -225,12 +234,18 @@ export const columns: ColumnDef<Payment>[] = [
         currency: "USD",
       }).format(amount)
 
-      return <div className="text-right font-medium">{formatted.substring(0,formatted.length-5)} $USD</div>
+      return <div className="text-right font-medium">{formatted.substring(0, formatted.length - 5)} $USD</div>
     },
   },
 ]
 
-export function DataTable({objectFilter, companyFilter, statusFilter}) {
+type Filter = {
+  objectFilter: string | undefined
+  companyFilter: string | undefined
+  statusFilter: string | undefined
+}
+
+export function DataTable({ objectFilter, companyFilter, statusFilter }: Filter) {
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -270,8 +285,8 @@ export function DataTable({objectFilter, companyFilter, statusFilter}) {
   }, [statusFilter])
   return (
     <div className="w-full h-full grid ">
-      
-      <div className="rounded-md overflow-y-scroll flex" style={{height: "calc(100vh - 20rem)"}}>
+
+      <div className="rounded-md overflow-y-scroll flex" style={{ height: "calc(100vh - 20rem)" }}>
         <Table className="">
           <TableHeader className="bg-root sticky top-0 z-10">
             {table.getHeaderGroups().map((headerGroup) => (
@@ -282,9 +297,9 @@ export function DataTable({objectFilter, companyFilter, statusFilter}) {
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
                     </TableHead>
                   )
                 })}
