@@ -58,7 +58,7 @@ const Companies = [
   },
 ]
 
-const CompaniesCombobox = ({companieFilter, setCompanieFilter}) => {
+const CompaniesCombobox = ({companyFilter, setCompanyFilter}) => {
   const [open, setOpen] = useState(false)
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -69,8 +69,8 @@ const CompaniesCombobox = ({companieFilter, setCompanieFilter}) => {
           aria-expanded={open}
           className="w-[200px] justify-between"
         >
-          {companieFilter
-            ? Companies.find((Company) => Company.value === companieFilter)?.label
+          {companyFilter
+            ? Companies.find((Company) => Company.value === companyFilter)?.label
             : "Company"}
           <Image src={CarretDown} width={20} height={20} alt="icon carretDown" />
         </Button>
@@ -86,7 +86,7 @@ const CompaniesCombobox = ({companieFilter, setCompanieFilter}) => {
                   key={Company.value}
                   value={Company.value}
                   onSelect={(currentValue) => {
-                    setCompanieFilter(currentValue === companieFilter ? "" : currentValue)
+                    setCompanyFilter(currentValue === companyFilter ? "" : currentValue)
                     setOpen(false)
                   }}
                 >
@@ -94,7 +94,7 @@ const CompaniesCombobox = ({companieFilter, setCompanieFilter}) => {
                   <Image src={Check} width={20} height={20} alt="icon check"
                     className={cn(
                       "ml-auto h-4 w-4",
-                      companieFilter === Company.value ? "opacity-100" : "opacity-0"
+                      companyFilter === Company.value ? "opacity-100" : "opacity-0"
                     )}
                   />
                 </CommandItem>

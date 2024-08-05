@@ -14,25 +14,26 @@ import {
 import Link from 'next/link';
 import React from 'react';
 import Image from 'next/image';
-import userProfil from "../../../public/user-profil.jpg"
-import arrowDown from "../../../public/icons/arrow-down.svg"
-import HomeIcon from "../../../public/icons/home.svg"
-import ClientsIcon from "../../../public/icons/client.svg"
-import LeadsIcon from "../../../public/icons/leads.svg"
-import DealsIcon from "../../../public/icons/deals.svg"
-import InboundIcon from "../../../public/icons/inbound.svg"
-import OutboundIcon from "../../../public/icons/outbound.svg"
-import AdsIcon from "../../../public/icons/ads.svg"
-import NotificationsIcon from "../../../public/icons/notifications.svg"
-import SettingsIcon from "../../../public/icons/settings.svg"
-import UpgradeIcon from "../../../public/icons/upgrade.svg"
-import SearchIcon from "../../../public/icons/search.svg"
-import KblocIcon from "../../../public/icons/kbloc.svg"
-import Logo from "../../../public/logo.svg"
+import userProfil from "../../public/user-profil.jpg"
+import arrowDown from "../../public/icons/arrow-down.svg"
+import HomeIcon from "../../public/icons/home.svg"
+import ClientsIcon from "../../public/icons/client.svg"
+import LeadsIcon from "../../public/icons/leads.svg"
+import DealsIcon from "../../public/icons/deals.svg"
+import InboundIcon from "../../public/icons/inbound.svg"
+import OutboundIcon from "../../public/icons/outbound.svg"
+import AdsIcon from "../../public/icons/ads.svg"
+import NotificationsIcon from "../../public/icons/notifications.svg"
+import SettingsIcon from "../../public/icons/settings.svg"
+import UpgradeIcon from "../../public/icons/upgrade.svg"
+import SearchIcon from "../../public/icons/search.svg"
+import KblocIcon from "../../public/icons/kbloc.svg"
+import Logo from "../../public/logo.svg"
+import CarretDown from "../../public/icons/carret-down.svg"
 
 const Sidebar = () => {
   return (
-    <div className='flex flex-row w-1/5 h-full'>
+    <div className='flex flex-row w-1/5 max-w-[300px] min-w-[200px] h-full'>
       <div className='w-full'>
         <div className="hidden md:block">
           <div className="flex h-full max-h-screen flex-col gap-2">
@@ -65,19 +66,19 @@ const Sidebar = () => {
                 </Link>
                 <Link
                   href="#"
-                  className="flex items-center gap-3 rounded-lg bg-white px-3 py-1 transition-all hover:bg-muted"
+                  className="flex items-center gap-3 rounded-lg px-3 py-1 text-primary transition-all hover:bg-muted"
                 >
                   <Image src={LeadsIcon} width={20} height={20} alt="icon home" />
                   Leads
                 </Link>
                 <Link
                   href="#"
-                  className="flex items-center gap-3 rounded-lg px-3 py-1 text-primary transition-all hover:bg-muted"
+                  className="flex items-center gap-3 rounded-lg px-3 py-1 text-primary bg-white  transition-all hover:bg-muted"
                 >
                   <Image src={DealsIcon} width={20} height={20} alt="icon Deals" />
                   Deals
                 </Link>
-                <h2 className='text-sidebar-title px-2 mt-2 mb-2 text-md'>Your lists</h2>
+                <h2 className='text-sidebar-title px-2 mt-4 mb-2 text-md'>Your lists</h2>
                 <Link
                   href="#"
                   className="flex items-center gap-3 rounded-lg px-3 py-1 text-primary transition-all hover:bg-muted"
@@ -120,16 +121,15 @@ const Sidebar = () => {
             </div>
             <div className="mt-auto p-4">
               <Card x-chunk="dashboard-02-chunk-0">
-
-                <CardContent className="p-2  md:p-4">
-                  <div className='flex flex-row items-center'>
-                    <Image src={DealsIcon} width={18} height={18} alt="icon Deals" />
+                <CardContent className="p-2 md:p-4">
+                  <div className='flex flex-row items-center bold mb-4 font-bold'>
+                    <Image className='mr-2' src={DealsIcon} width={18} height={18} alt="icon Deals" />
                     Deals
                   </div>
                   <Progress value={80} />
-                  <p className='py-2'>5 Deals left from 30 Leads</p>
+                  <p className='pt-2 pb-4 text-xs font-medium'>5 Deals left from 30 Leads</p>
                   <Button size="sm" className="w-full">
-                    <Image src={UpgradeIcon} width={20} height={20} alt="icon home" />
+                    <Image className='mr-2'  src={UpgradeIcon} width={20} height={20} alt="icon home" />
                     Upgrade to pro
                   </Button>
                 </CardContent>
@@ -138,12 +138,12 @@ const Sidebar = () => {
                 <CardContent className="p-2 md:p-4 w-full ">
                   <DropdownMenu>
                     <DropdownMenuTrigger className='w-full flex flex-row items-center'>
-                      <Image src={userProfil} width={50} height={50} alt="user profil" />
-                      <div className='flex flex-col justify-center items-start text-left  ml-2'>
+                      <Image className='rounded-md' src={userProfil} width={50} height={50} alt="user profil" />
+                      <div className='flex flex-col justify-center items-start text-left  ml-2 text-sm w-full text-ellipsis	overflow-hidden'>
                         Arthur Bossuyt
                         Arthur@squared.studio
                       </div>
-                      <Image src={arrowDown} width={20} height={20} alt="icon arowDown" />
+                      <Image src={CarretDown} width={20} height={20} alt="icon arowDown" />
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className='relative right-0 w-56'>
                       <DropdownMenuLabel>My Account</DropdownMenuLabel>

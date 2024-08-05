@@ -181,6 +181,7 @@ export const columns: ColumnDef<Payment>[] = [
     header: ({ column }) => {
       return (
         <Button
+        className="pl-0"
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
@@ -229,7 +230,7 @@ export const columns: ColumnDef<Payment>[] = [
   },
 ]
 
-export function DataTable({objectFilter, companieFilter, statusFilter}) {
+export function DataTable({objectFilter, companyFilter, statusFilter}) {
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -262,8 +263,8 @@ export function DataTable({objectFilter, companieFilter, statusFilter}) {
     table.getColumn("object")?.setFilterValue(objectFilter)
   }, [objectFilter])
   React.useEffect(() => {
-    table.getColumn("companie")?.setFilterValue(companieFilter)
-  }, [companieFilter])
+    table.getColumn("company")?.setFilterValue(companyFilter)
+  }, [companyFilter])
   React.useEffect(() => {
     table.getColumn("status")?.setFilterValue(statusFilter)
   }, [statusFilter])

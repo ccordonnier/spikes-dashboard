@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Sidebar from "./components/sidebar";
+import Sidebar from "../components/sidebar";
 
 const inter = Inter({ subsets: ["latin"],variable: "--font-sans" });
 
@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className + " bg-root flex flex-row h-[98vh] p-y-2 overflow-hidden pt-5"}><Sidebar />{children}</body>
+      <body className={inter.className + " bg-root flex flex-row h-[98vh] p-y-2 overflow-hidden min-w-[850px]"} style={{paddingTop:"1.25rem"}}><Sidebar />{children}</body>
     </html>
   );
 }
