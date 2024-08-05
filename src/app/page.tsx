@@ -46,7 +46,7 @@ export default function Home() {
         </div>
       </div>
       <div className="flex flex-col mt-4 h-full">
-        <DataTable objectFilter={objectFilter} companieFilter={companyFilter} statusFilter={statusFilter} />
+        <DataTable objectFilter={objectFilter} companyFilter={companyFilter} statusFilter={statusFilter} />
       </div>
     </main>
   );
