@@ -42,8 +42,13 @@ const Statuses = [
   }
 ]
 
-const StatusesCombobox = ({statusFilter, setStatusFilter}) => {
-  const [open, setOpen] = useState(false)
+type StatusesComboboxType = {
+  statusFilter: string;
+  setStatusFilter: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const StatusesCombobox: React.FC<StatusesComboboxType> = ({statusFilter, setStatusFilter}) => {
+  const [open, setOpen] = useState<boolean>(false)
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>

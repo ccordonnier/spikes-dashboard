@@ -58,8 +58,13 @@ const Companies = [
   },
 ]
 
-const CompaniesCombobox = ({companyFilter, setCompanyFilter}) => {
-  const [open, setOpen] = useState(false)
+type CompaniesComboboxType = {
+  companyFilter: string;
+  setCompanyFilter: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const CompaniesCombobox: React.FC<CompaniesComboboxType> = ({companyFilter, setCompanyFilter}) => {
+  const [open, setOpen] = useState<boolean>(false)
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>

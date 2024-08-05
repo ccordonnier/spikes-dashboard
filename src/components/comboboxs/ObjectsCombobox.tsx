@@ -57,9 +57,13 @@ const Objects = [
     label: "Landing page",
   },
 ]
+type ObjectsComboboxType = {
+  objectFilter: string;
+  setObjectFilter: React.Dispatch<React.SetStateAction<string>>;
+};
 
-const ObjectsCombobox = ({objectFilter, setObjectFilter}) => {
-  const [open, setOpen] = useState(false)
+const ObjectsCombobox: React.FC<ObjectsComboboxType> = ({objectFilter, setObjectFilter}) => {
+  const [open, setOpen] = useState<boolean>(false)
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
